@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_22_172911) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_22_173437) do
   create_table "hobies", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -23,6 +23,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_22_172911) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "post_photos", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "photo_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["photo_id"], name: "index_post_photos_on_photo_id"
+    t.index ["post_id"], name: "index_post_photos_on_post_id"
   end
 
   create_table "post_tags", force: :cascade do |t|
@@ -79,6 +88,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_22_172911) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "post_photos", "photos"
+  add_foreign_key "post_photos", "posts"
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
   add_foreign_key "posts", "hobies"

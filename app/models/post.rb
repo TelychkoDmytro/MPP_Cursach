@@ -6,6 +6,9 @@ class Post < ApplicationRecord
 	has_many :post_tag, dependent: :destroy
 	has_many :tags, through: :post_tag
 
+	has_many :post_photo, dependent: :destroy
+	has_many :photos, through: :post_photo
+
 	validate :type_belongs_to_hoby
 
 	private
