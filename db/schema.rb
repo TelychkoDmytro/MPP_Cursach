@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_22_153425) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_22_160918) do
   create_table "hobies", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "post_tags", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_tags_on_post_id"
+    t.index ["tag_id"], name: "index_post_tags_on_tag_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -27,6 +36,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_22_153425) do
     t.index ["hoby_id"], name: "index_posts_on_hoby_id"
     t.index ["type_id"], name: "index_posts_on_type_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "title"
+    t.integer "hoby_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hoby_id"], name: "index_tags_on_hoby_id"
   end
 
   create_table "types", force: :cascade do |t|
@@ -52,8 +69,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_22_153425) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "post_tags", "posts"
+  add_foreign_key "post_tags", "tags"
   add_foreign_key "posts", "hobies"
   add_foreign_key "posts", "types"
   add_foreign_key "posts", "users"
+  add_foreign_key "tags", "hobies"
   add_foreign_key "types", "hobies"
 end

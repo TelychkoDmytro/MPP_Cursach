@@ -3,6 +3,9 @@ class Post < ApplicationRecord
 	belongs_to :hoby
 	belongs_to :type
 
+	has_many :post_tag, dependent: :destroy
+	has_many :tags, through: :post_tag
+
 	validate :type_belongs_to_hoby
 
 	private
