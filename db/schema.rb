@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_22_152455) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_22_153425) do
   create_table "hobies", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -23,8 +23,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_22_152455) do
     t.integer "hoby_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "type_id", null: false
     t.index ["hoby_id"], name: "index_posts_on_hoby_id"
+    t.index ["type_id"], name: "index_posts_on_type_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "hoby_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hoby_id"], name: "index_types_on_hoby_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,5 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_22_152455) do
   end
 
   add_foreign_key "posts", "hobies"
+  add_foreign_key "posts", "types"
   add_foreign_key "posts", "users"
+  add_foreign_key "types", "hobies"
 end
