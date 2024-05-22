@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
 	def index
-		render
+		@hobies = Hoby.all
 	end
 end
