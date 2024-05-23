@@ -1,3 +1,14 @@
 <h1><%= @post.annotation %></h1>
 <p><%= @post.description %></p>
 <p>Belongs to: <%= link_to @hoby.title, @hoby %></p>
+
+
+<% if @post.images.attached? %>
+	<div class="post-images">
+	  <% @post.images.each do |image| %>
+	    <div class="post-image">
+	      <%= image_tag image, style: "max-width: 300px; max-height: 300px;" %>
+	    </div>
+	  <% end %>
+	</div>
+<% end %>

@@ -1,5 +1,6 @@
 <h1><%= @hoby.title %></h1>
 <h2>Posts</h2>
+<%= link_to "New", new_hoby_post_path(@hoby) %>
 <ul>
   <% @posts.each do |post| %>
     <li>

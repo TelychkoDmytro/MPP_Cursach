@@ -1,0 +1,44 @@
+<%= form_with(model: @post, local: true, html: { class: 'form-horizontal'}) do |f| %>
+
+  <% if @post.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :hoby_id, :value => @hoby.id %>
+
+  <div class="form-group">
+    <%= f.label :annotation %>
+    <%= f.text_field :annotation, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :user_id, 'User' %>
+    <%= f.select :user_id, options_from_collection_for_select(@users, :id, :user_name), { include_blank: 'Select a user' }, { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :type_id, 'Type' %>
+    <%= f.select :type_id, options_from_collection_for_select(@types, :id, :title), { include_blank: 'Select a type' }, { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :images %>
+    <%= f.file_field :images, multiple: true, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit 'Create Post', class: 'btn btn-primary' %>
+  </div>
+<% end %>
