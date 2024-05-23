@@ -1,0 +1,8 @@
+<h1>Hobbies</h1>
+<ul>
+  <% @hobies.each do |hoby| %>
+    <li>
+      <%= link_to hoby.title, hoby %>
+    </li>
+  <% end %>
+</ul>

@@ -1,2 +1,9 @@
-<h1>Hobies#show</h1>
-<p>Find me in app/views/hobies/show.html.erb</p>
+<h1><%= @hoby.title %></h1>
+<h2>Posts</h2>
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <%= link_to post.description, hoby_post_path(@hoby, post) %>
+    </li>
+  <% end %>
+</ul>
