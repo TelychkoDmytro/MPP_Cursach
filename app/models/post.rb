@@ -14,6 +14,8 @@ class Post < ApplicationRecord
 	validate :type_belongs_to_hoby
 	validate :tags_belongs_to_hoby
 
+	has_many :likes, dependent: :destroy
+
 	private
 
 	def type_belongs_to_hoby

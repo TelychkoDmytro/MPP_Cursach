@@ -5,6 +5,7 @@
   <% @posts.each do |post| %>
     <li>
       <%= link_to post.annotation, hoby_post_path(@hoby, post) %>
+      <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
     </li>
   <% end %>
 </ul>

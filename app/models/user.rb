@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :posts
 
-  # belongs_to :photo
+  has_many :likes, dependent: :destroy
 
   has_one_attached :avatar
 end
