@@ -25,6 +25,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :user_name, :bio, :photo) # Add other fields you want to permit
+    params.require(:user).permit(:email, :user_name, :bio) # Add other fields you want to permit
   end
 end
