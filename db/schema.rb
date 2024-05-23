@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_22_173437) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_23_054333) do
   create_table "hobies", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -50,6 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_22_173437) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "type_id", null: false
+    t.string "annotation"
     t.index ["hoby_id"], name: "index_posts_on_hoby_id"
     t.index ["type_id"], name: "index_posts_on_type_id"
     t.index ["user_id"], name: "index_posts_on_user_id"

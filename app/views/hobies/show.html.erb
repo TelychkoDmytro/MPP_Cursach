@@ -3,7 +3,7 @@
 <ul>
   <% @posts.each do |post| %>
     <li>
-      <%= link_to post.description, hoby_post_path(@hoby, post) %>
+      <%= link_to post.annotation, hoby_post_path(@hoby, post) %>
     </li>
   <% end %>
 </ul>

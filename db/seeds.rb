@@ -50,15 +50,10 @@ types = Type.create([
 ])
 
 # Create some posts
-# posts = Post.create([
-#   { annotation: 'First post about reading', description: 'Reading is a great way to expand your knowledge', user_id: users[0].id, hoby_id: hobies[0].id, type_id: types[0].id },
-#   { annotation: 'Gardening tips', description: 'How to grow your own vegetables', user_id: users[1].id, hoby_id: hobies[1].id, type_id: types[1].id },
-#   { annotation: 'Delicious recipe', description: 'How to make the perfect pasta', user_id: users[0].id, hoby_id: hobies[2].id, type_id: types[2].id }
-# ])
 posts = Post.create([
-  { description: 'Reading is a great way to expand your knowledge', user_id: users[0].id, hoby_id: hobies[0].id, type_id: types[0].id },
-  { description: 'How to grow your own vegetables', user_id: users[1].id, hoby_id: hobies[1].id, type_id: types[1].id },
-  { description: 'How to make the perfect pasta', user_id: users[0].id, hoby_id: hobies[2].id, type_id: types[2].id }
+  { annotation: 'First post about reading', description: 'Reading is a great way to expand your knowledge', user_id: users[0].id, hoby_id: hobies[0].id, type_id: types[0].id },
+  { annotation: 'Gardening tips', description: 'How to grow your own vegetables', user_id: users[1].id, hoby_id: hobies[1].id, type_id: types[1].id },
+  { annotation: 'Delicious recipe', description: 'How to make the perfect pasta', user_id: users[0].id, hoby_id: hobies[2].id, type_id: types[2].id }
 ])
 
 # Create some tags
