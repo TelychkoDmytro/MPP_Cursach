@@ -3,19 +3,6 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
 
   def show
-    # @user is already set by the before_action
-  end
-
-  def edit
-    # @user is already set by the before_action
-  end
-
-  def update
-    if @user.update(user_params)
-      redirect_to @user, notice: 'Profile was successfully updated.'
-    else
-      render :edit
-    end
   end
 
   private
