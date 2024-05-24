@@ -16,6 +16,8 @@ class Post < ApplicationRecord
 
 	has_many :likes, dependent: :destroy
 
+	has_many :comments, dependent: :destroy
+
 	private
 
 	def type_belongs_to_hoby
