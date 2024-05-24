@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+	before_action :set_hoby
+	before_action :set_post, only: [:show, :edit, :update, :destroy]
+
 	def new
 		@post = Post.new
 		@users = User.all
@@ -8,8 +11,9 @@ class PostsController < ApplicationController
 
 	def create
 		@post = Post.new(post_params)
+		# @post = @hoby.posts_build(post_params)
 		if @post.save
-			redirect_to @post, notice: 'Post was successfully created.'
+			redirect_to [@hoby, @post], notice: 'Post was successfully created.'
 		else
 			@users = User.all
 			@hobies = Hoby.all
@@ -24,6 +28,14 @@ class PostsController < ApplicationController
 	end
 
 	private
+
+	def set_hoby
+		@hoby = Hoby.find(params[:hoby_id])
+	end
+
+	def set_post
+		@post = Post.find(params[:id])
+	end
 
 	def post_params
 		params.require(:post).permit(:annotation, :description, :user_id, :hoby_id, :type_id, images: [])

@@ -1,4 +1,4 @@
-<%= form_with(model: @post, local: true, html: { class: 'form-horizontal'}) do |f| %>
+<%= form_with(model: [@hoby, @post], url: hoby_posts_path(@hoby), local: true, html: { class: 'form-horizontal'}) do |f| %>
 
   <% if @post.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
