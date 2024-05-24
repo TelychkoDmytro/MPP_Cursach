@@ -2,6 +2,18 @@ class PostsController < ApplicationController
 	before_action :set_hoby
 	before_action :set_post, only: [:show, :edit, :update, :destroy]
 
+	def edit
+		@types = Type.all
+	end
+
+	def update
+		if @post.update(post_params)
+			redirect_to [@hoby, @post], notice: 'Post was successfully edited'
+		else
+			render :edit
+		end
+	end
+
 	def new
 		@post = Post.new
 		@users = User.all

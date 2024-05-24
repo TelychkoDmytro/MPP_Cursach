@@ -1,4 +1,7 @@
 <h1><%= @post.annotation %></h1>
+<% if current_user.id == @post.user_id %>
+	<p><%= link_to "Edit", edit_hoby_post_path(@hoby, @post) %></p>
+<% end %>
 <p><%= @post.description %></p>
 <p>Belongs to: <%= link_to @hoby.title, @hoby %></p>
 
