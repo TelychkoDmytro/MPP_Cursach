@@ -24,6 +24,8 @@
   <%= button_to 'Like', hoby_post_likes_path(@hoby, @post), method: :post %>
 <% end %>
 
+<%= link_to "Поскаржитись", new_hoby_post_report_path(@hoby, @post)%>
+
 <h2>Comments</h2>
 <%= render 'comments/form', hoby: @hoby, post: @post %>
 

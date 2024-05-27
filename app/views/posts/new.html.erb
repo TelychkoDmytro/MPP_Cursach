@@ -23,9 +23,9 @@
     <%= f.text_area :description, class: 'form-control' %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group" hidden>
     <%= f.label :user_id, 'User' %>
-    <%= f.select :user_id, options_from_collection_for_select(@users, :id, :user_name), { include_blank: 'Select a user' }, { class: 'form-control' } %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
   </div>
 
   <div class="form-group">
