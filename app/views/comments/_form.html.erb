@@ -1,7 +1,6 @@
 <%= form_with(model: [@hoby, @post, Comment.new], local: true) do |form| %>
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+  <div class="comment-area">
+    <%= form.text_area :content, class: 'comment-text-area' %>
   </div>
   <div class="actions">
     <%= form.submit 'Add Comment' %>

@@ -1,39 +1,54 @@
-<h1><%= @post.annotation %></h1>
-<% if current_user.id == @post.user_id %>
-  <p><%= link_to "Edit", edit_hoby_post_path(@hoby, @post) %></p>
-<% end %>
-<p><%= @post.description %></p>
-<p>Belongs to: <%= link_to @hoby.title, @hoby %></p>
-
-<% if @post.images.attached? %>
-  <div class="post-images">
-    <% @post.images.each do |image| %>
-      <div class="post-image">
-        <%= image_tag image, style: "max-width: 300px; max-height: 300px;" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= @post.annotation %></title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1><%= @post.annotation %></h1>
+    <% if current_user.id == @post.user_id %>
+      <p><%= link_to "Edit", edit_hoby_post_path(@hoby, @post), class: 'edit-link' %></p>
+    <% end %>
+    <% if @post.images.attached? %>
+      <div class="post-images">
+        <% @post.images.each do |image| %>
+          <div class="post-image">
+            <%= image_tag image, class: 'responsive-image' %>
+          </div>
+        <% end %>
       </div>
     <% end %>
-  </div>
-<% end %>
+    <p class="description"><%= @post.description %></p>
+    <p class="belongs-to">Belongs to: <%= link_to @hoby.title, @hoby %></p>
 
-<p><%= @post.likes.count %> <%= @post.likes.count == 1 ? 'Like' : 'Likes' %></p>
 
-<% pre_like = @post.likes.find { |like| like.user_id == current_user.id } %>
-<% if pre_like %>
-  <%= button_to 'Unlike', hoby_post_like_path(@hoby, @post, pre_like), method: :delete %>
-<% else %>
-  <%= button_to 'Like', hoby_post_likes_path(@hoby, @post), method: :post %>
-<% end %>
+    <p class="likes-count"><%= @post.likes.count %> <%= @post.likes.count == 1 ? 'Like' : 'Likes' %></p>
 
-<h2>Comments</h2>
-<%= render 'comments/form', hoby: @hoby, post: @post %>
+    <% pre_like = @post.likes.find { |like| like.user_id == current_user.id } %>
+    <% if pre_like %>
+      <%= button_to 'Unlike', hoby_post_like_path(@hoby, @post, pre_like), method: :delete, class: 'like-button' %>
+    <% else %>
+      <%= button_to 'Like', hoby_post_likes_path(@hoby, @post), method: :post, class: 'like-button' %>
+    <% end %>
 
-<div id="comments">
-  <% @post.comments.each do |comment| %>
-    <div class="comment">
-      <p><strong><%= comment.user.user_name %>:</strong> <%= comment.content %></p>
-      <% if current_user.id == comment.user_id %>
-        <%= button_to 'Delete', hoby_post_comment_path(@hoby, @post, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <div class="dropdown-divider"></div>
+
+    <h2>Comments</h2>
+    <%= render 'comments/form', hoby: @hoby, post: @post %>
+
+    <div id="comments">
+      <% @post.comments.each do |comment| %>
+        <div class="comment">
+          <p><strong><%= comment.user.user_name %>:</strong> <%= comment.content %></p>
+          <% if current_user.id == comment.user_id %>
+            <%= button_to 'Delete', hoby_post_comment_path(@hoby, @post, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button' %>
+          <% end %>
+        </div>
       <% end %>
     </div>
-  <% end %>
-</div>
+  </div>
+</body>
+</html>

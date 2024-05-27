@@ -19,4 +19,8 @@ class HobiesController < ApplicationController
   def set_hoby
     @hoby = Hoby.find(params[:id])
   end
+
+  def hoby_params
+    params.require(:hoby).permit(:id, :title, type_ids: [], tag_ids: [])
+  end
 end

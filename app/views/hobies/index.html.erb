@@ -1,8 +1,39 @@
-<h1>Hobbies</h1>
-<ul>
-  <% @hobies.each do |hoby| %>
-    <li>
-      <%= link_to hoby.title, hoby %>
-    </li>
-  <% end %>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hobbies</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Hobbies</h1>
+    <ul class="hobbies-grid">
+      <% @hobies.each do |hoby| %>
+        <li class="hobby-card">
+          <%# Display the random/latest photo %>
+          <% recent_posts = hoby.posts.where('created_at >= ?', 1.hour.ago) %>
+          <% photo_post = recent_posts.any? ? recent_posts.first : hoby.posts.order(created_at: :desc).first %>
+          <% if photo_post && photo_post.images.attached? %>
+            <%= image_tag photo_post.images.first, class: 'responsive-image' %>
+          <% end %>
+
+          <h2><%= link_to hoby.title, hoby %></h2>
+          <p>Tags: 
+            <% hoby.tags.order(popularity: :desc).limit(3).each do |tag| %>
+              <%= tag.title %><%= tag != hoby.tags.order(popularity: :desc).limit(3).last ? ',' : '' %>
+            <% end %>
+          </p>
+          <p>Types: 
+            <% hoby.types.order(popularity: :desc).limit(3).each do |type| %>
+              <%= type.title %><%= type != hoby.types.order(popularity: :desc).limit(3).last ? ',' : '' %>
+            <% end %>
+          </p>
+          <p>New posts in the last hour: <%= recent_posts.count %></p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</body>
+</html>

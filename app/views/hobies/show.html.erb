@@ -1,91 +1,55 @@
-<h1><%= @hoby.title %></h1>
-<h2>Posts</h2>
-<%= link_to "New", new_hoby_post_path(@hoby), class: "new-post-link" %>
-
-<div class="filter-options">
-  <label for="sort-by">Sort by:</label>
-  <select id="sort-by" onchange="filterPosts()">
-    <option value="likes-asc">Number of Likes (Ascending)</option>
-    <option value="likes-desc">Number of Likes (Descending)</option>
-    <option value="created_at-asc">Created At (Ascending)</option>
-    <option value="created_at-desc">Created At (Descending)</option>
-  </select>
-
-  <label for="filter-types">Filter by Type:</label>
-  <select id="filter-types" multiple onchange="filterPosts()">
-    <% Type.all.each do |type| %>
-      <option value="<%= type.id %>"><%= type.title %></option>
-    <% end %>
-  </select>
-</div>
-
-<div id="posts-container" class="posts-grid">
-  <% @posts.each do |post| %>
-    <div class="post-card" data-likes="<%= post.likes.count %>" data-created-at="<%= post.created_at %>" data-type-id="<%= post.type.id %>">
-      <div class="post-header">
-        <%= link_to post.user.user_name, user_path(post.user), class: "user-link" %>
-      </div>
-      <div class="post-main">
-        <%# if post.images.attached? %>
-          <%# <div class="post-images"> %>
-            <%# post.images.each do |image| %>
-              <%#= image_tag image, class: "post-image" %>
-            <%# end %>
-          <%# </div> %>
-        <%# end %>
-        <div class="post-content">
-          <%= link_to post.annotation, hoby_post_path(@hoby, post), class: "post-annotation" %>
-          <p class="post-description"><%= truncate(post.description, length: 100) %></p>
-          <p class="post-type"><%= post.type.title %></p>
-        </div>
-      </div>
-      <div class="post-footer">
-        <p class="post-likes"><%= post.likes.count %> <%= post.likes.count == 1 ? 'Like' : 'Likes' %></p>
-        <p class="post-date"><%= post.created_at.strftime("%B %d, %Y") %></p>
-      </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= @hoby.title %></title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1><%= @hoby.title %></h1>
+    <h2>Posts</h2>
+    <div class="new-post-link">
+      <%= link_to "New", new_hoby_post_path(@hoby) %>
     </div>
-  <% end %>
-</div>
-
-
-
-
-<script>
-  function filterPosts() {
-    var sortBy = document.getElementById("sort-by").value;
-    var filterTypes = Array.from(document.getElementById("filter-types").selectedOptions).map(option => option.value);
-    
-    var postsContainer = document.getElementById("posts-container");
-    var posts = Array.from(postsContainer.getElementsByClassName("post-card"));
-
-    // Filter posts by selected types
-    posts.forEach(post => {
-      var postTypeId = post.getAttribute("data-type-id");
-      if (filterTypes.length === 0 || filterTypes.includes(postTypeId)) {
-        post.style.display = "";
-      } else {
-        post.style.display = "none";
-      }
-    });
-
-    // Sort posts based on the selected criteria
-    var sortedPosts = posts.filter(post => post.style.display !== "none").sort((a, b) => {
-      if (sortBy === "likes-asc") {
-        return parseInt(a.getAttribute("data-likes")) - parseInt(b.getAttribute("data-likes"));
-      } else if (sortBy === "likes-desc") {
-        return parseInt(b.getAttribute("data-likes")) - parseInt(a.getAttribute("data-likes"));
-      } else if (sortBy === "created_at-asc") {
-        return new Date(a.getAttribute("data-created-at")) - new Date(b.getAttribute("data-created-at"));
-      } else if (sortBy === "created_at-desc") {
-        return new Date(b.getAttribute("data-created-at")) - new Date(a.getAttribute("data-created-at"));
-      }
-    });
-
-    // Reorder posts in the DOM
-    sortedPosts.forEach(post => postsContainer.appendChild(post));
-  }
-
-  document.addEventListener("DOMContentLoaded", function() {
-    filterPosts(); // Initial filter and sort on page load
-  });
-</script>
+    <div class="posts-grid">
+      <% @posts.each do |post| %>
+        <div class="post-card">
+          <div class="post-header">
+            <span class="post-user">
+              <%= link_to post.user.user_name, user_path(post.user) %>
+            </span>
+            <span class="post-type">
+              <%= post.type.title %>
+            </span>
+          </div>
+          <div class="post-main">
+            <% if post.images.attached? %>
+              <div class="post-images">
+                <% post.images.each do |image| %>
+                  <div class="post-image">
+                    <%= image_tag image, class: "responsive-image" %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+            <div class="post-content">
+              <h3><%= link_to post.annotation, hoby_post_path(@hoby, post) %></h3>
+              <p class="post-description"><%= post.description %></p>
+            </div>
+          </div>
+          <div class="post-footer">
+            <span class="post-date">
+              <%= post.created_at.strftime("%b %d, %Y") %>
+            </span>
+            <span class="post-likes">
+              <%= post.likes.count %> <%= (post.likes.count == 1) ? 'Like' : 'Likes' %>
+            </span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</body>
+</html>
