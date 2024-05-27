@@ -74,3 +74,4 @@ PostTag.create([
   { post_id: posts[1].id, tag_id: tags[1].id },
   { post_id: posts[2].id, tag_id: tags[2].id }
 ])
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

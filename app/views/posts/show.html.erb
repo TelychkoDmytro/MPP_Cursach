@@ -34,6 +34,8 @@
       <%= button_to 'Like', hoby_post_likes_path(@hoby, @post), method: :post, class: 'like-button' %>
     <% end %>
 
+    <%= link_to "Поскаржитись", new_hoby_post_report_path(@hoby, @post)%>
+
     <div class="dropdown-divider"></div>
 
     <h2>Comments</h2>
