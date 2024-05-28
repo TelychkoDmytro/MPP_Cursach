@@ -1,0 +1,4 @@
+en:
+  comment:
+    blank_comment: "Comment cannot be empty"
+    success_deleted: "Comment was successfully deleted"

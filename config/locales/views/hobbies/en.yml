@@ -1,0 +1,10 @@
+en:
+  hobby:
+    hobbies: "Hobbies"
+    tags: "Tags: "
+    types: "Types: "
+    new_posts_info: "New posts in the last hour: %{count}"
+    posts: "Posts"
+    new_post: "New post"
+    one_like: "like"
+    likes: "likes"

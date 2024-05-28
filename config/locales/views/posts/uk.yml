@@ -1,0 +1,21 @@
+uk:
+  post:
+    form:
+      title: "Пост"
+      annotation: "Аннотація"
+      description: "Опис"
+      type: "Тип"
+      select_type: "Оберіть тип"
+      tags: "Теги"
+      select_tags: "Оберіть теги"
+      images: "Зображення"
+      create_post: "Створити пост"
+    edit: "Редагувати"
+    belongs_to: "Належить: "
+    one_like: "Лайк"
+    unlike: "Видалити Лайк"
+    likes: "Лайків"
+    report: "Поскаржитись"
+    comments: "Коментарі"
+    destroy_comment: "Видалити"
+    error_prohibited: "заборонив збереження цієї публікації: "

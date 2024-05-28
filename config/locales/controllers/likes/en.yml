@@ -1,0 +1,4 @@
+en:
+  like:
+    already_liked: "You can't like more than once"
+    cannot_unlike: "Cannot unlike"

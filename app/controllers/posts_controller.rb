@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 
 	def update
 		if @post.update(post_params)
-			redirect_to [@hoby, @post], notice: 'Post was successfully edited'
+			redirect_to [@hoby, @post], notice: t('post.success_edit')
 		else
 			render :edit
 		end
@@ -25,7 +25,7 @@ class PostsController < ApplicationController
 		@post = Post.new(post_params)
 		# @post = @hoby.posts_build(post_params)
 		if @post.save
-			redirect_to [@hoby, @post], notice: 'Post was successfully created.'
+			redirect_to [@hoby, @post], notice: t('post.success_creation')
 		else
 			@users = User.all
 			@hobies = Hoby.all

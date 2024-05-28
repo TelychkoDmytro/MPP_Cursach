@@ -1,0 +1,10 @@
+uk:
+  hobby:
+    hobbies: "Хобі"
+    tags: "Теги: "
+    types: "Типи: "
+    new_posts_info: "Нові пости за останню годину: %{count}"
+    posts: "Пости"
+    new_post: "Новий пост"
+    one_like: "Лайк"
+    likes: "Лайків"

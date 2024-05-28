@@ -1,0 +1,5 @@
+en:
+  application:
+    blocked: "You are blocked."
+    block_reason: " Reason: %{reason}."
+    block_end: " Block end date %{date}"

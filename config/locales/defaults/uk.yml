@@ -1,0 +1,4 @@
+uk:
+  date:
+    formats:
+      long: "%d %B %Y р."

@@ -1,0 +1,8 @@
+en:
+  shared:
+    title: "CourseCraft"
+    dropdown: "Dropdown"
+    log_in: "Log in"
+    register: "Register"
+    my_profile: "My profile"
+    log_out: "Log out"

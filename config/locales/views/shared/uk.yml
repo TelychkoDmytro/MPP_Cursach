@@ -1,0 +1,8 @@
+uk:
+  shared:
+    title: "CourseCraft"
+    dropdown: "Список"
+    log_in: "Увійти"
+    register: "Зареєструватися"
+    my_profile: "Мій профіль"
+    log_out: "Вийти"

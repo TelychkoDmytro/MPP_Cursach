@@ -33,16 +33,16 @@ class Post < ApplicationRecord
 	def type_belongs_to_hoby
 		if hoby_id.present? and type_id.present?
 			valid_type = Type.where(id: type_id, hoby_id: hoby_id).exists?
-			errors.add(:type_id, 'must belong to the selected hoby') unless valid_type
+			errors.add(:type_id, I18n.t('post.must_belong_to_hobby')) unless valid_type
 		else
-			errors.add(:base, 'Hoby and Type must be present')
+			errors.add(:base, I18n.t('post.must_be_hobby_n_type'))
 		end
 	end
 
 	def tags_belongs_to_hoby
 		if hoby_id.present?
 		else
-			errors.add(:base, 'Hoby')
+			errors.add(:base, I18n.t('post.hobby'))
 		end 
 	end
 end

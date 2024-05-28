@@ -10,14 +10,14 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to hoby_post_path(@hoby, @post)
     else
-      redirect_to hoby_post_path(@hoby, @post), alert: 'Comment cannot be blank.'
+      redirect_to hoby_post_path(@hoby, @post), alert: t('comment.blank_comment')
     end
   end
 
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to hoby_post_path(params[:hoby_id], params[:post_id]), notice: 'Comment was successfully deleted.'
+    redirect_to hoby_post_path(params[:hoby_id], params[:post_id]), notice: t('comment.success_deleted')
   end
 
   private

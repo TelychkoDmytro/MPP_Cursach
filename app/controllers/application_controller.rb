@@ -16,11 +16,19 @@ class ApplicationController < ActionController::Base
       blocked_user = current_user
       sign_out current_user
 
-      message = "Ви заблоковані."
-      message += " Причина: #{blocked_user.blacklist.reason}." if blocked_user.blacklist.present?
-      message += " Дата закінчення блокування: #{blocked_user.blacklist.ban_duration}." if blocked_user.blacklist.present? && !blocked_user.blacklist.is_permanent?
+      message = t('application.blocked')
+      message += t('application.block_reason', reason: blocked_user.blacklist.reason) if blocked_user.blacklist.present?
+      message += t('application.block_end', date: blocked_user.blacklist.ban_duration) if blocked_user.blacklist.present? && !blocked_user.blacklist.is_permanent?
 
       redirect_to root_path, alert: message
     end
   end
+
+  around_action :switch_locale
+
+  def switch_locale(&action)
+    locale = params[:locale] || I18n.default_locale
+    I18n.with_locale(locale, &action)
+  end
+
 end

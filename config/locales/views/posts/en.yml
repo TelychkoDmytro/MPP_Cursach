@@ -1,0 +1,21 @@
+en:
+  post:
+    form:
+      title: "Post"
+      annotation: "Annotation"
+      description: "Description"
+      type: "Type"
+      select_type: "Select a type"
+      tags: "Tags"
+      select_tags: "Select tags"
+      images: "Images"
+      create_post: "Create Post"
+    edit: "Edit"
+    belongs_to: "Belongs to: "
+    one_like: "Like"
+    unlike: "Unlike"
+    likes: "Likes"
+    report: "Report"
+    comments: "Comments"
+    destroy_comment: "Delete"
+    error_prohibited: "prohibited this post from being saved: "

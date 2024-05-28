@@ -10,9 +10,8 @@ class ReportsController < ApplicationController
   def create
     @post_report = @post.post_reports.new(report_params)
     if @post_report.save
-      redirect_to hoby_post_path(@hoby, @post), notice: 'Скарга на пост успішно відправлена.'
+      redirect_to hoby_post_path(@hoby, @post), notice: t('report.success')
     else
-      puts "Не вдалося!"
       render :new
     end
   end

@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def check_blocked
     if @user.blocked?
-      redirect_to root_path, alert: "Ви заблоковані з доступу до цієї сторінки."
+      redirect_to root_path, alert: t('user.blocked')
     end
   end
 end

@@ -10,7 +10,7 @@
   <div class="container">
     <h1><%= @post.annotation %></h1>
     <% if current_user && current_user.id == @post.user_id %>
-      <p><%= link_to "Edit", edit_hoby_post_path(@hoby, @post), class: 'edit-link' %></p>
+      <p><%= link_to t('post.edit'), edit_hoby_post_path(@hoby, @post), class: 'edit-link' %></p>
     <% end %>
     <% if @post.images.attached? %>
       <div class="post-images">
@@ -22,26 +22,24 @@
       </div>
     <% end %>
     <p class="description"><%= @post.description %></p>
-    <p class="belongs-to">Belongs to: <%= link_to @hoby.title, @hoby %></p>
+    <p class="belongs-to"><%= t('post.belongs_to') %> <%= link_to @hoby.title, @hoby %></p>
 
-
-    <p class="likes-count"><%= @post.likes.count %> <%= @post.likes.count == 1 ? 'Like' : 'Likes' %></p>
+    <p class="likes-count"><%= @post.likes.count %> <%= @post.likes.count == 1 ? t('post.one_like') : t('post.likes') %></p>
 
     <% pre_like = @post.likes.find { |like| like.user_id == current_user&.id } %>
     <% if current_user %>
       <%= pre_like ?
-            button_to('Unlike', hoby_post_like_path(@hoby, @post, pre_like), method: :delete, class: 'like-button') :
-            button_to('Like', hoby_post_likes_path(@hoby, @post), method: :post, class: 'like-button') %>
+            button_to(t('post.unlike'), hoby_post_like_path(@hoby, @post, pre_like), method: :delete, class: 'like-button') :
+            button_to(t('post.one_like'), hoby_post_likes_path(@hoby, @post), method: :post, class: 'like-button') %>
     <% else %>
-      <%= button_to 'Like', new_user_session_path, method: :get, class: 'like-button' %>
+      <%= button_to t('post.one_like'), new_user_session_path, method: :get, class: 'like-button' %>
     <% end %>
 
-
-    <%= link_to "Поскаржитись", (current_user ? new_hoby_post_report_path(@hoby, @post) : new_user_session_path) %>
+    <%= link_to t('post.report'), (current_user ? new_hoby_post_report_path(@hoby, @post) : new_user_session_path) %>
 
     <div class="dropdown-divider"></div>
 
-    <h2>Comments</h2>
+    <h2> <%= t('post.comments') %> </h2>
     <%= render 'comments/form', hoby: @hoby, post: @post %>
 
     <div id="comments">
@@ -49,7 +47,7 @@
         <div class="comment">
           <p><strong><%= comment.user.user_name %>:</strong> <%= comment.content %></p>
           <% if current_user && current_user.id == comment.user_id %>
-            <%= button_to 'Delete', hoby_post_comment_path(@hoby, @post, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button' %>
+            <%= button_to t('post.destroy_comment'), hoby_post_comment_path(@hoby, @post, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button' %>
           <% end %>
         </div>
       <% end %>

@@ -1,0 +1,5 @@
+uk:
+  post:
+    must_belong_to_hobby: "має належати до обраного хобі"
+    must_be_hobby_n_type: "Хобі і тип мають бути обраними"
+    hobby: "Хобі"

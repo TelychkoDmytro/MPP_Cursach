@@ -1,0 +1,5 @@
+en:
+  post:
+    must_belong_to_hobby: "must belong to the selected hobby"
+    must_be_hobby_n_type: "Hobby and Type must be present"
+    hobby: "Hobby"

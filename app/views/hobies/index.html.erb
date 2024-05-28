@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hobbies</title>
+  <title><%= t('hobby.hobbies') %></title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
-    <h1>Hobbies</h1>
+    <h1><%= t('hobby.hobbies') %></h1>
     <ul class="hobbies-grid">
       <% @hobies.each do |hoby| %>
         <li class="hobby-card">
@@ -20,17 +20,17 @@
           <% end %>
 
           <h2><%= link_to hoby.title, hoby %></h2>
-          <p>Tags: 
+          <p><%= t('hobby.tags') %>
             <% hoby.tags.order(popularity: :desc).limit(3).each do |tag| %>
               <%= tag.title %><%= tag != hoby.tags.order(popularity: :desc).limit(3).last ? ',' : '' %>
             <% end %>
           </p>
-          <p>Types: 
+          <p><%= t('hobby.types') %>
             <% hoby.types.order(popularity: :desc).limit(3).each do |type| %>
               <%= type.title %><%= type != hoby.types.order(popularity: :desc).limit(3).last ? ',' : '' %>
             <% end %>
           </p>
-          <p>New posts in the last hour: <%= recent_posts.count %></p>
+          <p><%= t('hobby.new_posts_info', count: recent_posts.count) %></p>
         </li>
       <% end %>
     </ul>

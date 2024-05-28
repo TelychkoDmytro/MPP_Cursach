@@ -1,0 +1,5 @@
+uk:
+  application:
+    blocked: "Ви заблоковані."
+    block_reason: " Причина: %{reason}."
+    block_end: " Дата закінчення блокування %{date}"
