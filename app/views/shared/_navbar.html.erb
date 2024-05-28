@@ -19,6 +19,18 @@
 	                    <%= button_to t('shared.log_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
 	                </div>
 	            </li>
+							<ul style="list-style-type: none; padding-left: 0;">
+								<li>
+									<%= link_to url_for(locale: 'en'), style: "color: white; text-decoration: none;" do %>
+										<%= image_tag('en.png', alt: 'English', size: '24x16') %> English
+									<% end %>
+								</li>
+								<li>
+									<%= link_to url_for(locale: 'uk'), style: "color: white; text-decoration: none;" do %>
+										<%= image_tag('uk.png', alt: 'Українська', size: '24x16') %> Українська
+									<% end %>
+								</li>
+							</ul>
 	        </ul>
         <% else %>
             <ul class="navbar-nav">
