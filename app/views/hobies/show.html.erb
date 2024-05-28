@@ -11,7 +11,7 @@
     <h1><%= @hoby.title %></h1>
     <h2>Posts</h2>
     <div class="new-post-link">
-      <%= link_to "New", new_hoby_post_path(@hoby) %>
+      <%= link_to "New", new_hoby_post_path(@hoby) if current_user%>
     </div>
     <div class="posts-grid">
       <% @posts.each do |post| %>

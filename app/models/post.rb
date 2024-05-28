@@ -18,6 +18,8 @@ class Post < ApplicationRecord
 
 	has_many :comments, dependent: :destroy
 
+	has_many :post_reports, dependent: :destroy
+
 	def self.ransackable_associations(auth_object = nil)
 		["comments", "hoby", "likes", "post_tag", "tags", "type", "user"]
 	end
