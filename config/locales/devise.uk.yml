@@ -1,5 +1,20 @@
 uk:
   devise:
+    sign_up: "Реєстрація"
+    log_in: "Увійти"
+    username: "Ім'я користувача"
+    email: "Email адреса"
+    password: "Пароль"
+    account: "Акаунт"
+    upload_photo: "Завантажити фото"
+    current_password: "Поточний пароль"
+    confirm_password: "Підтвердження пароля"
+    remember_me: "Запам'ятати мене"
+    save_changes: "Зберегти зміни"
+    deactivate: "Деактивувати мій акаунт"
+    leave_password_blank: "Залиште пароль порожнім, якщо ви не хочете його змінювати"
+    need_current_password: "Нам потрібен ваш поточний пароль, щоб підтвердити ваші зміни"
+    forgot_password: "Забули пароль?"
     confirmations:
       confirmed: "Ваш обліковий запис було успішно підтверджено."
       send_instructions: "На Ваш email надіслано інструкції з підтвердження облікового запису."

@@ -2,6 +2,21 @@
 
 en:
   devise:
+    sign_up: "Sign Up"
+    log_in: "Log in"
+    username: "User Name"
+    email: "Email address"
+    password: "Password"
+    account: "Account"
+    upload_photo: "Upload Photo"
+    current_password: "Current Password"
+    confirm_password: "Confirm password"
+    remember_me: "Remember Me"
+    save_changes: "Save Changes"
+    deactivate: "Deactivate my account"
+    leave_password_blank: "Leave password blank if you don't want to change it"
+    need_current_password: "We need your current password to confirm your changes"
+    forgot_password: "Forgot your password?"
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."

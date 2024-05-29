@@ -1,0 +1,6 @@
+en:
+  admin:
+    dashboard:
+      latest_10_post_reports: "Latest 10 Unresolved Post Reports"
+      actions: "Actions"
+      view: "View"
